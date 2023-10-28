@@ -1,0 +1,17 @@
+.header {
+    display: flex;
+    align-items: center;
+}
+
+.logo {
+    width: 100px;
+    height: 100px;
+    fill: #5A7C66;
+}
+
+.title {
+    font-family: 'Space Mono', monospace;
+    font-size: 24px;
+    color: #5A7C66;
+    margin-left: 10px;
+}
