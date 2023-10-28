@@ -1,77 +1,47 @@
-/* Style for the Card component */
 .card {
     background-color: #fff;
-    /* Set a white background */
     border-radius: 10px;
-    /* Add rounded corners */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    /* Add a subtle shadow */
     padding: 20px;
-    /* Add padding around the card */
     text-align: center;
-    /* Center text content */
 }
 
-/* Style for the card image */
 .card img {
     max-width: 200px;
-    /* Ensure the image doesn't overflow the card */
     max-height: 200px;
-    /* Limit the height of the image */
     width: auto;
-    /* Automatically adjust the width */
     border-radius: 10px;
-    /* Add rounded corners to the image */
     margin-bottom: 10px;
-    /* Add space between image and text */
 }
-/* Style for the card title */
+
 .card h2 {
     font-size: 18px;
-    /* Set the title font size */
     color: #333;
-    /* Set the title text color */
     margin: 0;
-    /* Remove any margin */
     margin-bottom: 10px;
-    /* Add space between title and other content */
 }
 
-/* Style for the seasons text */
 .card p.seasons {
     font-size: 14px;
-    /* Set the seasons font size */
     color: #999;
-    /* Set the text color for seasons */
     margin: 0;
-    /* Remove any margin */
     margin-bottom: 10px;
-    /* Add space between seasons and other content */
 }
 
-/* Style for the card content */
 .card p.content {
     font-size: 16px;
-    /* Set the content font size */
     color: #666;
-    /* Set the content text color */
     margin: 0;
-    /* Remove any margin */
 }
 
-/* Style for the container that holds the cards */
 .cards-container {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
-    /* or justify-content: flex-start; depending on your preference */
 }
 
-/* Style for individual card items */
 .card {
     width: calc(33.33% - 10px);
-    /* Adjust the width as needed for 3 cards in a row */
     margin-bottom: 20px;
     box-sizing: border-box;
-    /* Add other styles for your cards here */
 }
