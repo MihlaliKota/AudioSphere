@@ -1,0 +1,41 @@
+/* Custom styles for the carousel container */
+.carousel-container {
+    max-width: 600px;
+    /* Adjust the maximum width as needed */
+    margin: 0 auto;
+    /* Center the container horizontally */
+    background-color: #f4f4f4;
+    /* Set a background color */
+    border-radius: 10px;
+    /* Add rounded corners */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Add a subtle shadow */
+    padding: 20px;
+    /* Add padding around the container */
+}
+
+/* Style for the Carousel component */
+.carousel {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    background-color: #fff;
+    /* Set a white background */
+    border-radius: 10px;
+    /* Add rounded corners to the carousel */
+}
+
+/* Style for individual carousel items (cards) */
+.carousel .slide {
+    padding: 20px;
+    /* Add padding around the cards */
+    background-color: #fff;
+    /* Set a white background for the cards */
+    border-radius: 10px;
+    /* Add rounded corners to the cards */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    /* Add a subtle shadow to the cards */
+    margin: 10px;
+    /* Add some margin between cards */
+}
