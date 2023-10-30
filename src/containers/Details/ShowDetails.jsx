@@ -15,16 +15,14 @@ const genreMapping = {
 };
 
 function ShowDetails() {
-  // Use the useParams hook from React Router to get the show ID from the URL
   const { showId } = useParams();
 
   const [show, setShow] = useState(null);
 
   useEffect(() => {
-    // Fetch show details based on the showId
     const fetchShow = async () => {
       try {
-        const data = await fetchShowDetails(showId); // Implement fetchShowDetails in your API service
+        const data = await fetchShowDetails(showId);
         setShow(data);
       } catch (error) {
         console.error("Error fetching show details:", error);

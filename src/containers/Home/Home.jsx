@@ -18,7 +18,6 @@ function Home() {
   const [shows, setShows] = useState([]);
 
   useEffect(() => {
-    // Fetch the list of available shows
     const fetchAvailableShows = async () => {
       try {
         const data = await fetchShows();
