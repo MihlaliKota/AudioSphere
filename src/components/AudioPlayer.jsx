@@ -24,7 +24,7 @@ const AudioPlayer = ({ audioSrc }) => {
 };
 
 AudioPlayer.propTypes = {
-  audioSrc: PropTypes.string.isRequired, // Add prop type validation
+  audioSrc: PropTypes.string.isRequired,
 };
 
 export default AudioPlayer;
