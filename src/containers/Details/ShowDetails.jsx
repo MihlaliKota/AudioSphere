@@ -47,7 +47,6 @@ function ShowDetails() {
             Last Updated: {new Date(show.updated).toLocaleDateString("en-GB")}
           </p>
 
-          {/* Display the list of seasons and episodes here */}
           <h3>Seasons and Episodes</h3>
           <ul>
             {show.seasons.map((season) => (

@@ -1,28 +1,26 @@
-.home-container {
+.main-container {
     margin: 20px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    /* Three columns with equal width */
+    grid-gap: 20px;
+    /* Spacing between columns and rows */
 }
 
-
 .show-card {
-    display: inline-block;
-    width: calc(15% - 20px);
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-right: 20px;
-    margin-bottom: 20px;
     padding: 10px;
     background-color: #5A7C66;
-    text-align: center;
 }
 
 .show-image {
-    width: 150px;
-    height: 150px;
+    width: 300px;
+    height: 300px;
     border-radius: 5px;
     margin: 0 auto 10px;
     display: block;
 }
-
 
 .show-details {
     flex: 1;
