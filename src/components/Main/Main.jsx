@@ -44,16 +44,17 @@ function Main() {
           <img src={show.image} alt={show.title} className="show-image" />
           <div className="show-details">
             <h2 className="show-title">{show.title}</h2>
-            <p className="show-metadata">Seasons: {show.seasons}</p>
-            <p className="show-metadata">
-              Genres:{" "}
+            <p className="show-season"><span className="maindesign">Seasons:</span> {show.seasons}</p>
+            <p className="show-genre">
+              <span className="maindesign">Genres:{" "}</span>
               {show.genres.map((genreId) => genreMapping[genreId]).join(", ")}
             </p>
             <p className="show-description">
-              Description: {truncateDescription(show.description, 150)}
+              <span className="maindesign">Description:</span>
+              {truncateDescription(show.description, 150)}
             </p>
-            <p className="show-metadata">
-              Last Updated: {new Date(show.updated).toLocaleDateString("en-GB")}
+            <p className="show-update">
+              <span className="maindesign">Updated:</span> {new Date(show.updated).toLocaleDateString("en-GB")}
             </p>
           </div>
         </div>

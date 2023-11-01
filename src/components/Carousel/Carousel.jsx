@@ -52,14 +52,10 @@ function CarouselSlide() {
             <img src={show.image} alt={show.title} className="carousel-image" />
             <div className="carousel-details">
               <h2 className="carousel-title">{show.title}</h2>
-              <p className="carousel-seasons">Seasons: {show.seasons}</p>
+              <p className="carousel-seasons"><span className="design">Seasons:</span> {show.seasons}</p>
               <p className="carousel-genre">
-                Genres:{" "}
+                <span className="design">Genres:{" "}</span>
                 {show.genres.map((genreId) => genreMapping[genreId]).join(", ")}
-              </p>
-              <p className="carousel-update">
-                Last Updated:{" "}
-                {new Date(show.updated).toLocaleDateString("en-GB")}
               </p>
             </div>
           </div>
