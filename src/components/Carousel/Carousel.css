@@ -2,9 +2,7 @@
     margin: 20px;
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    /* Responsive grid with 300px minimum width */
     grid-gap: 20px;
-    /* Spacing between columns and rows */
 }
 
 .show-card {
@@ -12,15 +10,12 @@
     border-radius: 5px;
     padding: 10px;
     background-color: #5A7C66;
-    transition: all 0.3s ease-in-out;
-    /* Add transition effect to the card */
-    cursor: pointer;
-}
-
-.show-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.3);
-    /* Add hover effect to the card */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    height: 100%;
 }
 
 .show-image {
@@ -30,21 +25,33 @@
     border-radius: 5px;
     margin-bottom: 1rem;
     transition: all 0.3s ease-in-out;
-    /* Add transition effect to the image */
 }
 
 .show-image:hover {
     transform: scale(1.1);
-    /* Add hover effect to the image */
 }
 
 .show-details {
-    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    padding: 10px;
 }
 
-.show-metadata {
+.show-title {
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    margin: 0;
+    color: #FFFFFF;
+}
+
+.show-seasons,
+.show-genre,
+.show-description,
+.show-update {
     font-family: 'Space Mono', monospace;
     font-size: 14px;
-    margin: 5px 0;
+    margin: 2px 0;
     color: #FFFFFF;
 }
