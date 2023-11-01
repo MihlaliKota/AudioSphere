@@ -32,15 +32,8 @@ function CarouselSlide() {
     fetchAvailableShows();
   }, []);
 
-  const truncateDescription = (description, maxLength) => {
-    if (description.length > maxLength) {
-      return description.substring(0, maxLength) + " ...";
-    }
-    return description;
-  };
-
   return (
-    <div className="main-container">
+    <div className="carousel-container">
       <Carousel
         showThumbs={false}
         showStatus={false}
@@ -55,19 +48,16 @@ function CarouselSlide() {
         interval={5000}
       >
         {shows.map((show) => (
-          <div key={show.id} className="show-card">
-            <img src={show.image} alt={show.title} className="show-image" />
-            <div className="show-details">
-              <h2 className="show-title">{show.title}</h2>
-              <p className="show-seasons">Seasons: {show.seasons}</p>
-              <p className="show-genre">
+          <div key={show.id} className="carousel-card">
+            <img src={show.image} alt={show.title} className="carousel-image" />
+            <div className="carousel-details">
+              <h2 className="carousel-title">{show.title}</h2>
+              <p className="carousel-seasons">Seasons: {show.seasons}</p>
+              <p className="carousel-genre">
                 Genres:{" "}
                 {show.genres.map((genreId) => genreMapping[genreId]).join(", ")}
               </p>
-              <p className="show-description">
-                Description: {truncateDescription(show.description, 150)}
-              </p>
-              <p className="show-update">
+              <p className="carousel-update">
                 Last Updated:{" "}
                 {new Date(show.updated).toLocaleDateString("en-GB")}
               </p>
