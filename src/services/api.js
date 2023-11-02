@@ -27,4 +27,3 @@ export const fetchShowDetails = async (showId) => {
     return null;
   }
 };
-
