@@ -1,7 +1,7 @@
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useState, useEffect } from "react";
-import { fetchShows } from "C:/Users/Mihlali/Desktop/ReactProject/capstone/src/services/api.js";
+import { fetchShows } from "../../services/api";
 import "./Carousel.css";
 
 const genreMapping = {

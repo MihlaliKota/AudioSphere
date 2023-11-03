@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { fetchShows } from "C:/Users/Mihlali/Desktop/ReactProject/capstone/src/services/api.js";
+import { fetchShows } from "../../services/api";
 import "./Home.css";
 import CarouselSlide from "../../components/Carousel/Carousel";
 
