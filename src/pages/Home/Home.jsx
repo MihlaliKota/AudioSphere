@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
-import { fetchShows } from "../../services/api";
-import "./Home.css";
+// import { fetchShows } from "../../services/api";
 import CarouselSlide from "../../components/Carousel/Carousel";
+import "./Home.css";
+import { Link } from "react-router-dom";
+
 
 const genreMapping = {
   1: "Personal Growth",
@@ -16,20 +18,30 @@ const genreMapping = {
 };
 
 function Home() {
-  const [shows, setShows] = useState([]);
+  const [podcasts, setPodcasts] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
-    const fetchAvailableShows = async () => {
+    const fetchPodcasts = async () => {
       try {
-        const data = await fetchShows();
-        setShows(data);
+        setLoading(true);
+        const response = await fetch("https://podcast-api.netlify.app/shows");
+        const data = await response.json();
+        setPodcasts(data);
       } catch (error) {
-        console.error("Error fetching shows:", error);
+        setError(error.message);
+      } finally {
+        setLoading(false);
       }
     };
 
-    fetchAvailableShows();
+    fetchPodcasts();
   }, []);
+
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p>Error: {error.message}</p>;
+
 
   const truncateDescription = (description, maxLength) => {
     if (description.length > maxLength) {
@@ -42,27 +54,31 @@ function Home() {
     <>
       <CarouselSlide />
       <div className="main-container">
-        {shows.map((show) => (
+        {podcasts.map((show) => (
           <div key={show.id} className="show-card">
-            <img src={show.image} alt={show.title} className="show-image" />
-            <div className="show-details">
-              <h2 className="show-title">{show.title}</h2>
-              <p className="show-season">
-                <span className="maindesign">Seasons:</span> {show.seasons}
-              </p>
-              <p className="show-genre">
-                <span className="maindesign">Genres: </span>
-                {show.genres.map((genreId) => genreMapping[genreId]).join(", ")}
-              </p>
-              <p className="show-description">
-                <span className="maindesign">Description:</span>
-                {truncateDescription(show.description, 150)}
-              </p>
-              <p className="show-update">
-                <span className="maindesign">Updated:</span>{" "}
-                {new Date(show.updated).toLocaleDateString("en-GB")}
-              </p>
-            </div>
+            <Link to={`/podcast/${show.id}`}>
+              <img src={show.image} alt={show.title} className="show-image" />
+              <div className="show-details">
+                <h2 className="show-title">{show.title}</h2>
+                <p className="show-season">
+                  <span className="maindesign">Seasons:</span> {show.seasons}
+                </p>
+                <p className="show-genre">
+                  <span className="maindesign">Genres: </span>
+                  {show.genres
+                    .map((genreId) => genreMapping[genreId])
+                    .join(", ")}
+                </p>
+                <p className="show-description">
+                  <span className="maindesign">Description:</span>
+                  {truncateDescription(show.description, 150)}
+                </p>
+                <p className="show-update">
+                  <span className="maindesign">Updated:</span>{" "}
+                  {new Date(show.updated).toLocaleDateString("en-GB")}
+                </p>
+              </div>
+            </Link>
           </div>
         ))}
       </div>

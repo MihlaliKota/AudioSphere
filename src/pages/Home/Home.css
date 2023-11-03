@@ -1,3 +1,7 @@
+html,body {
+    text-decoration: none;
+}
+
 .main-container {
     margin: 20px;
     display: grid;
@@ -12,6 +16,7 @@
     padding: 10px;
     background-color: #5A7C66;
     text-align: center;
+    text-decoration: none;
 }
 
 .show-image {
