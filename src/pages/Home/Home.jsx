@@ -1,8 +1,7 @@
 import { useState, useEffect } from "react";
-// import { fetchShows } from "../../services/api";
+import { Link } from "react-router-dom";
 import CarouselSlide from "../../components/Carousel/Carousel";
 import "./Home.css";
-import { Link } from "react-router-dom";
 
 const genreMapping = {
   1: "Personal Growth",
@@ -17,21 +16,23 @@ const genreMapping = {
 };
 
 function Home() {
-  const [data, setData] = useState([]);
   const [podcasts, setPodcasts] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+  const [searchQuery, setSearchQuery] = useState("");
+  const [sortOrder, setSortOrder] = useState("");
 
   useEffect(() => {
     const fetchPodcasts = async () => {
       try {
         setLoading(true);
-        const response = await fetch("https://podcast-api.netlify.app/shows");
+        const response = await fetchPodcastData(
+          "https://podcast-api.netlify.app/shows"
+        );
         const data = await response.json();
         setPodcasts(data);
-        setData(data);
       } catch (error) {
-        setError(error.message);
+        setError(error);
       } finally {
         setLoading(false);
       }
@@ -40,8 +41,17 @@ function Home() {
     fetchPodcasts();
   }, []);
 
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  const fetchPodcastData = async (url) => {
+    try {
+      const response = await fetch(url);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response;
+    } catch (error) {
+      throw new Error(`Failed to fetch podcast data: ${error.message}`);
+    }
+  };
 
   const truncateDescription = (description, maxLength) => {
     if (description.length > maxLength) {
@@ -50,56 +60,37 @@ function Home() {
     return description;
   };
 
-  function sort(e) {
-    const { value } = e.target;
-    if (value === "za") {
-      const orderZA = podcasts
-        .slice()
-        .sort((a, b) => b.title.localeCompare(a.title));
+  const handleSortChange = (e) => {
+    const selectedValue = e.target.value;
+    setSortOrder(selectedValue);
 
-      setPodcasts(orderZA);
+    const sortedPodcasts = [...podcasts];
+    if (selectedValue === "az") {
+      sortedPodcasts.sort((a, b) => a.title.localeCompare(b.title));
+    } else if (selectedValue === "za") {
+      sortedPodcasts.sort((a, b) => b.title.localeCompare(a.title));
+    } else if (selectedValue === "ascending") {
+      sortedPodcasts.sort((a, b) => new Date(a.updated) - new Date(b.updated));
+    } else if (selectedValue === "descending") {
+      sortedPodcasts.sort((a, b) => new Date(b.updated) - new Date(a.updated));
     }
-    if (value === "az") {
-      const orderAZ = podcasts
-        .slice()
-        .sort((a, b) => a.title.localeCompare(b.title));
+    setPodcasts(sortedPodcasts);
+  };
 
-      setPodcasts(orderAZ);
-    }
+  const handleSearchChange = (e) => {
+    setSearchQuery(e.target.value.toLowerCase());
+  };
 
-    if (value === "ascending") {
-      const ascending = podcasts
-        .slice()
-        .sort((a, b) => new Date(a.updated) - new Date(b.updated));
-
-      setPodcasts(ascending);
-    }
-
-    if (value === "descending") {
-      const descending = podcasts
-        .slice()
-        .sort((a, b) => new Date(b.updated) - new Date(a.updated));
-
-      setPodcasts(descending);
-    }
-  }
-
-  function search(e) {
-    const { value } = e.target;
-    setPodcasts(() => {
-      return data.filter((podcast) => {
-        return podcast.title?.toLowerCase().includes(value.toLowerCase());
-      });
-    });
-  }
+  const filteredPodcasts = podcasts.filter((podcast) =>
+    podcast.title.toLowerCase().includes(searchQuery)
+  );
 
   return (
     <>
       <CarouselSlide />
-
       <div>
-        <label htmlFor="sort">Sort Podcasts:</label>
-        <select id="sort" onChange={sort}>
+        <label htmlFor="sort">Sort Podcasts: </label>
+        <select id="sort" onChange={handleSortChange} value={sortOrder}>
           <option value="">Sorted by</option>
           <option value="az">A-Z</option>
           <option value="za">Z-A</option>
@@ -107,14 +98,22 @@ function Home() {
           <option value="descending">Descending Order</option>
         </select>
       </div>
-
       <div>
-        <label htmlFor="search">Search</label>
-        <input type="text" id="search" onChange={search} />
+        <label htmlFor="search">Search: </label>
+        <input
+          type="text"
+          id="search"
+          onChange={handleSearchChange}
+          value={searchQuery}
+        />
       </div>
       <div className="main-container">
-        {podcasts?.length > 0 &&
-          podcasts.map((show) => (
+        {loading ? (
+          <p>Loading...</p>
+        ) : error ? (
+          <p>Error: {error.message}</p>
+        ) : (
+          filteredPodcasts.map((show) => (
             <div key={show.id} className="show-card">
               <Link to={`/podcast/${show.id}`}>
                 <img src={show.image} alt={show.title} className="show-image" />
@@ -140,7 +139,8 @@ function Home() {
                 </div>
               </Link>
             </div>
-          ))}
+          ))
+        )}
       </div>
     </>
   );

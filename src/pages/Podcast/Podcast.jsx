@@ -2,20 +2,19 @@ import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
 
 const Podcast = () => {
-  const [podcast, setPodcast] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
-  const [podcastSeason, setPodcastSeason] = useState({});
   const { id } = useParams();
   const goBack = useNavigate();
+
+  const [podcast, setPodcast] = useState({});
+  const [podcastSeason, setPodcastSeason] = useState({});
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchPodcast = async () => {
       try {
         setLoading(true);
-        const response = await fetch(
-          `https://podcast-api.netlify.app/id/${id}`
-        );
+        const response = await fetchPodcastData(id);
         const data = await response.json();
         setPodcast(data);
         setPodcastSeason(data.seasons[0]);
@@ -29,17 +28,36 @@ const Podcast = () => {
     fetchPodcast();
   }, [id]);
 
-  function handleSelectSeason(e) {
-    setPodcastSeason(podcast.seasons[parseInt(e.target.value-1)]);
-  }
+  const fetchPodcastData = async (id) => {
+    try {
+      const response = await fetch(`https://podcast-api.netlify.app/id/${id}`);
+      if (!response.ok) {
+        throw new Error(`HTTP error! Status: ${response.status}`);
+      }
+      return response;
+    } catch (error) {
+      throw new Error(`Failed to fetch podcast data: ${error.message}`);
+    }
+  };
+
+  const handleSelectSeason = (e) => {
+    const selectedSeason = podcast.seasons.find(
+      (season) => season.season === parseInt(e.target.value)
+    );
+    setPodcastSeason(selectedSeason);
+  };
 
   if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error: {error.message}</p>;
+  if (error) return <p>Error: {error}</p>;
 
   return (
     <div>
       <p onClick={() => goBack("/")}>Back</p>
-      <img src={podcastSeason.image} alt={podcast.title} className="show-image" />
+      <img
+        src={podcastSeason.image}
+        alt={podcast.title}
+        className="show-image"
+      />
       <div className="show-details">
         <h2 className="show-title">{podcast.title}</h2>
         <p className="show-description">
@@ -52,20 +70,20 @@ const Podcast = () => {
           </label>
           <select name="seasons" id="seasons" onChange={handleSelectSeason}>
             <option value="">Select a season</option>
-            {podcast?.seasons &&
-              podcast.seasons.map((option) => (
-                <option key={option.season} value={option.season}>
-                  {option.title} (Season {option.season})
+            {podcast.seasons &&
+              podcast.seasons.map((season) => (
+                <option key={season.season} value={season.season}>
+                  {season.title} (Season {season.season})
                 </option>
               ))}
           </select>
         </div>
         <div>
           <h2>Season: {podcastSeason.season}</h2>
-          <p>Episodes: {podcastSeason.episodes?.length}</p>
+          <p>Episodes: {podcastSeason.episodes?.length || 0}</p>
         </div>
         <div>
-          {podcastSeason?.episodes &&
+          {podcastSeason.episodes &&
             podcastSeason.episodes.map((episode) => (
               <div key={episode.episode}>
                 <h3>{episode.title}</h3>
