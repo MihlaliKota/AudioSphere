@@ -39,7 +39,7 @@ const Podcast = () => {
   return (
     <div>
       <p onClick={() => goBack("/")}>Back</p>
-      <img src={podcast.image} alt={podcast.title} className="show-image" />
+      <img src={podcastSeason.image} alt={podcast.title} className="show-image" />
       <div className="show-details">
         <h2 className="show-title">{podcast.title}</h2>
         <p className="show-description">
