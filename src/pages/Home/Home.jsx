@@ -69,9 +69,9 @@ function Home() {
       sortedPodcasts.sort((a, b) => a.title.localeCompare(b.title));
     } else if (selectedValue === "za") {
       sortedPodcasts.sort((a, b) => b.title.localeCompare(a.title));
-    } else if (selectedValue === "ascending") {
+    } else if (selectedValue === "asc") {
       sortedPodcasts.sort((a, b) => new Date(a.updated) - new Date(b.updated));
-    } else if (selectedValue === "descending") {
+    } else if (selectedValue === "desc") {
       sortedPodcasts.sort((a, b) => new Date(b.updated) - new Date(a.updated));
     }
     setPodcasts(sortedPodcasts);
@@ -94,8 +94,8 @@ function Home() {
           <option value="">Sorted by</option>
           <option value="az">A-Z</option>
           <option value="za">Z-A</option>
-          <option value="ascending">Ascending Order</option>
-          <option value="descending">Descending Order</option>
+          <option value="asc">Ascending Order</option>
+          <option value="desc">Descending Order</option>
         </select>
       </div>
       <div>

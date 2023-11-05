@@ -1,5 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
+import "./Podcast.css";
 
 const Podcast = () => {
   const { id } = useParams();
@@ -51,21 +52,23 @@ const Podcast = () => {
   if (error) return <p>Error: {error}</p>;
 
   return (
-    <div>
-      <p onClick={() => goBack("/")}>Back</p>
+    <div className="podcast-container">
+      <p className="back-link" onClick={() => goBack("/")}>
+        Back
+      </p>
       <img
         src={podcastSeason.image}
         alt={podcast.title}
-        className="show-image"
+        className="showimage"
       />
-      <div className="show-details">
-        <h2 className="show-title">{podcast.title}</h2>
-        <p className="show-description">
-          <span className="maindesign">Description:</span>
+      <div className="showdetails">
+        <h2 className="showtitle">{podcast.title}</h2>
+        <p className="showdescription">
+          <span className="description">Description:</span>
           {podcast.description}
         </p>
-        <div className="show-season">
-          <label className="maindesign" htmlFor="seasons">
+        <div className="showseason">
+          <label htmlFor="seasons" className="description">
             Seasons:
           </label>
           <select name="seasons" id="seasons" onChange={handleSelectSeason}>
@@ -78,14 +81,12 @@ const Podcast = () => {
               ))}
           </select>
         </div>
-        <div>
-          <h2>Season: {podcastSeason.season}</h2>
-          <p>Episodes: {podcastSeason.episodes?.length || 0}</p>
-        </div>
-        <div>
+        <div className="show-episode">
+          <h2 className="season-title">Season: {podcastSeason.season}</h2>
+          <p className="episode-title">Episodes: {podcastSeason.episodes?.length || 0}</p>
           {podcastSeason.episodes &&
             podcastSeason.episodes.map((episode) => (
-              <div key={episode.episode}>
+              <div key={episode.episode} className="episode-card">
                 <h3>{episode.title}</h3>
                 <p>{episode.description}</p>
                 <audio controls src={episode.file}></audio>
