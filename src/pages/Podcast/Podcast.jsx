@@ -48,7 +48,12 @@ const Podcast = () => {
     setPodcastSeason(selectedSeason);
   };
 
-  if (loading) return <p>Loading...</p>;
+  if (loading)
+    return (
+      <div className="loading-message">
+        <p>Loading...</p>
+      </div>
+    );
   if (error) return <p>Error: {error}</p>;
 
   return (
@@ -94,6 +99,7 @@ const Podcast = () => {
               podcastSeason.episodes.map((episode) => (
                 <div key={episode.episode} className="episode-card">
                   <h3>{episode.title}</h3>
+                  <p>Episode {episode.episode}</p>
                   <p>{episode.description}</p>
                   <audio controls src={episode.file}></audio>
                 </div>

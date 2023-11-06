@@ -123,7 +123,9 @@ function Home() {
       <br />
       <div className="main-container">
         {loading ? (
-          <p>Loading...</p>
+          <div className="loading-message">
+            <p>Loading...</p>
+          </div>  
         ) : error ? (
           <p>Error: {error.message}</p>
         ) : (

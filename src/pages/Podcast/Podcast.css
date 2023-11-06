@@ -133,3 +133,82 @@ select#seasons:focus {
     outline: none;
     border-color: #5A7C66;
 }
+
+.loading-message {
+    text-align: center;
+    font-size: 50px;
+    color: #5A7C66;
+}
+
+@media (max-width: 320px) {
+    .podcast-container {
+        max-width: 320px;
+        margin: 0 auto;
+        padding: 10px;
+        background-color: #DECFC8;
+    }
+
+    .showimage {
+        width: 100%;
+        max-height: auto;
+    }
+
+    .showtitle {
+        font-size: 20px;
+        text-align: center;
+    }
+
+    .showdescription {
+        margin: 5px 0;
+        font-size: 14px;
+        text-align: center;
+    }
+
+    .showseason label {
+        font-size: 14px;
+    }
+
+    .showseason select {
+        width: 100%;
+        padding: 8px;
+        margin-top: 5px;
+    }
+
+    .season-title {
+        font-size: 18px;
+        text-align: center;
+        margin-top: 10px;
+    }
+
+    .episode-title {
+        margin: 5px 0;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .episode-container {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .episode-card {
+        width: 100%;
+        margin: 0;
+        font-size: 14px;
+    }
+
+    audio {
+        width: 100%;
+    }
+
+    select#seasons {
+        width: 100%;
+        padding: 8px;
+    }
+
+    .loading-message {
+        font-size: 30px;
+        color: #5A7C66;
+    }
+}
