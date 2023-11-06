@@ -3,6 +3,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { useState, useEffect } from "react";
 import { fetchShows } from "../../services/api";
 import "./Carousel.css";
+import { Link } from "react-router-dom";
 
 const genreMapping = {
   1: "Personal Growth",
@@ -49,17 +50,25 @@ function CarouselSlide() {
       >
         {shows.map((show) => (
           <div key={show.id} className="carousel-card">
-            <img src={show.image} alt={show.title} className="carousel-image" />
-            <div className="carousel-details">
-              <h2 className="carousel-title">{show.title}</h2>
-              <p className="carousel-seasons">
-                <span className="design">Seasons:</span> {show.seasons}
-              </p>
-              <p className="carousel-genre">
-                <span className="design">Genres: </span>
-                {show.genres.map((genreId) => genreMapping[genreId]).join(", ")}
-              </p>
-            </div>
+            <Link className="Link" to={`/podcast/${show.id}`}>
+              <img
+                src={show.image}
+                alt={show.title}
+                className="carousel-image"
+              />
+              <div className="carousel-details">
+                <h2 className="carousel-title">{show.title}</h2>
+                <p className="carousel-seasons">
+                  <span className="design">Seasons:</span> {show.seasons}
+                </p>
+                <p className="carousel-genre">
+                  <span className="design">Genres: </span>
+                  {show.genres
+                    .map((genreId) => genreMapping[genreId])
+                    .join(", ")}
+                </p>
+              </div>
+            </Link>
           </div>
         ))}
       </Carousel>

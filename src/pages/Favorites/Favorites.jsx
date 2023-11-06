@@ -1,11 +1,10 @@
 // import { useState, useEffect } from "react";
-// // import { supabase } from "./supabase";
 
 // const Favorites = () => {
 //   const [favorites, setFavorites] = useState([]);
 //   const [sortedFavorites, setSortedFavorites] = useState([]);
-//   const [sortOrder, setSortOrder] = useState("az"); 
-//   const [user, setUser] = useState(null); 
+//   const [sortOrder, setSortOrder] = useState("az");
+//   const [user, setUser] = useState(null);
 
 //   useEffect(() => {
 //     fetchFavorites();

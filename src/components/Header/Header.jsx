@@ -19,7 +19,9 @@ export default function Header() {
         </div>
       </Link>
       <button className="favorites-button">
-        <Link to="/favorites">Favorites</Link>
+        <Link className="Link" to="/favorites">
+          Favorites
+        </Link>
       </button>
     </nav>
   );

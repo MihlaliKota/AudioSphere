@@ -4,6 +4,7 @@ import Footer from "./components/Footer/Footer";
 import Header from "./components/Header/Header";
 import Home from "./pages/Home/Home";
 import Podcast from "./pages/Podcast/Podcast";
+import Login from "./pages/Login/Auth";
 // import Favorites from "./pages/Favorites/Favorites";
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <main>
         <Header />
         <Routes>
+          <Route path="/login" element={<Login />} />
           <Route path="/" element={<Home />} />
           <Route path="/podcast/:id" element={<Podcast />} />
           {/* <Route path="/favorites" element={<Favorites />} /> */}
