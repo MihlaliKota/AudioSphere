@@ -65,8 +65,10 @@ const Podcast = () => {
         <h2 className="showtitle">{podcast.title}</h2>
         <p className="showdescription">
           <span className="description">Description:</span>
+          <br />
           {podcast.description}
         </p>
+        <br />
         <div className="showseason">
           <label htmlFor="seasons" className="description">
             Seasons:
@@ -83,15 +85,20 @@ const Podcast = () => {
         </div>
         <div className="show-episode">
           <h2 className="season-title">Season: {podcastSeason.season}</h2>
-          <p className="episode-title">Episodes: {podcastSeason.episodes?.length || 0}</p>
-          {podcastSeason.episodes &&
-            podcastSeason.episodes.map((episode) => (
-              <div key={episode.episode} className="episode-card">
-                <h3>{episode.title}</h3>
-                <p>{episode.description}</p>
-                <audio controls src={episode.file}></audio>
-              </div>
-            ))}
+          <p className="episode-title">
+            Episodes: {podcastSeason.episodes?.length || 0}
+          </p>
+          <br />
+          <span className="episode-container">
+            {podcastSeason.episodes &&
+              podcastSeason.episodes.map((episode) => (
+                <div key={episode.episode} className="episode-card">
+                  <h3>{episode.title}</h3>
+                  <p>{episode.description}</p>
+                  <audio controls src={episode.file}></audio>
+                </div>
+              ))}
+          </span>
         </div>
       </div>
     </div>

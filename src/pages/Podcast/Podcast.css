@@ -1,21 +1,33 @@
 .podcast-container {
-    max-width: 800px;
+    max-width: auto;
     margin: 0 auto;
     padding: 20px;
+    background-color: #DECFC8;
 }
 
 .back-link {
-    font-size: 18px;
+    background-color: #5A7C66;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
     cursor: pointer;
-    color: #5A7C66;
-    text-decoration: underline;
+    font-size: 16px;
+    text-decoration: none;
+    width: 45px;
+}
+
+.back-link:hover {
+    background-color: #4C6E5A;
 }
 
 .showimage {
     width: 500px;
     max-height: 500px;
     border-radius: 5px;
-margin-left: 150px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    display: block;
+    margin: 0 auto;
 }
 
 .showdetails {
@@ -26,28 +38,37 @@ margin-left: 150px;
     font-size: 24px;
     font-weight: bold;
     color: #5A7C66;
+    text-align: center;
 }
 
 .showdescription {
     margin: 10px 0;
     color: #333;
+    text-align: center;
 }
 
 .description {
     font-weight: bold;
     color: #5A7C66;
+    display: block;
+}
+
+.showseason {
+    text-align: center;
 }
 
 .showseason label {
     font-weight: bold;
     color: #5A7C66;
+    display: block;
 }
 
 .showseason select {
-    width: 100%;
+    width: 300px;
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin-top: 10px;
 }
 
 .season-title {
@@ -55,11 +76,19 @@ margin-left: 150px;
     font-weight: bold;
     color: #5A7C66;
     margin-top: 20px;
+    text-align: center;
 }
 
 .episode-title {
     margin: 10px 0;
     color: #5A7C66;
+    text-align: center;
+}
+
+.episode-container {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 30px;
 }
 
 .episode-card {
@@ -67,7 +96,20 @@ margin-left: 150px;
     border-radius: 5px;
     padding: 10px;
     margin-top: 10px;
+    background-color: #5A7C66;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    width: 100%;
+    height: auto;
+    margin: 0 auto;
+    transition: transform .2s;
+    font-family: 'Space Mono', monospace;
+    color: white;
 }
+
+.episode-card:hover {
+    transform: scale(1.02);
+}
+
 
 audio {
     width: 100%;
@@ -76,4 +118,18 @@ audio {
 p.error {
     color: red;
     font-weight: bold;
+}
+
+select#seasons {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Space Mono', monospace;
+    color: #5A7C66;
+    width: 200px;
+}
+
+select#seasons:focus {
+    outline: none;
+    border-color: #5A7C66;
 }

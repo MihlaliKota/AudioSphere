@@ -87,26 +87,40 @@ function Home() {
 
   return (
     <>
+      <br />
+      <br />
+      <br />
+      <h1 className="head">You might like these:</h1>
+      <br />
       <CarouselSlide />
-      <div>
-        <label htmlFor="sort">Sort Podcasts: </label>
-        <select id="sort" onChange={handleSortChange} value={sortOrder}>
-          <option value="">Sorted by</option>
-          <option value="az">A-Z</option>
-          <option value="za">Z-A</option>
-          <option value="asc">Ascending Order</option>
-          <option value="desc">Descending Order</option>
-        </select>
+      <br />
+      <br />
+      <div className="sort-search-container">
+        <div className="find">
+          <h1>Find Your Podcast:</h1>
+        </div>
+        <div>
+          <label htmlFor="sort">Sort Podcasts: </label>
+          <select id="sort" onChange={handleSortChange} value={sortOrder}>
+            <option value="">Sorted by</option>
+            <option value="az">A-Z</option>
+            <option value="za">Z-A</option>
+            <option value="asc">Ascending Order</option>
+            <option value="desc">Descending Order</option>
+          </select>
+        </div>
+        <div>
+          <label htmlFor="search">Search: </label>
+          <input
+            type="text"
+            id="search"
+            onChange={handleSearchChange}
+            value={searchQuery}
+          />
+        </div>
       </div>
-      <div>
-        <label htmlFor="search">Search: </label>
-        <input
-          type="text"
-          id="search"
-          onChange={handleSearchChange}
-          value={searchQuery}
-        />
-      </div>
+      <br />
+      <br />
       <div className="main-container">
         {loading ? (
           <p>Loading...</p>
@@ -115,7 +129,7 @@ function Home() {
         ) : (
           filteredPodcasts.map((show) => (
             <div key={show.id} className="show-card">
-              <Link to={`/podcast/${show.id}`}>
+              <Link className="Link" to={`/podcast/${show.id}`}>
                 <img src={show.image} alt={show.title} className="show-image" />
                 <div className="show-details">
                   <h2 className="show-title">{show.title}</h2>

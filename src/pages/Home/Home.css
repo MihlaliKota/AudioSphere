@@ -12,7 +12,11 @@
     padding: 10px;
     background-color: #5A7C66;
     text-align: center;
-    text-decoration: none;
+    transition: all 0.3s ease-in-out
+}
+
+.show-card:hover {
+    transform: scale(1.1);
 }
 
 .show-image {
@@ -54,4 +58,45 @@
 .maindesign {
     font-weight: bold;
     color: #8EB29A;
+}
+
+.Link {
+    text-decoration: none;
+}
+
+.head {
+    font-family: 'Space Mono', monospace;
+    font-size: 20px;
+    margin: 0;
+    color: #5A7C66;
+    text-align: center;
+    background-color: #DECFC8;
+}
+
+.sort-search-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 20px;
+    font-family: 'Space Mono', monospace;
+    color: #5A7C66;
+}
+
+.sort-search-container input,
+.sort-search-container select {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-family: 'Space Mono', monospace;
+    color: #5A7C66;
+}
+
+.sort-search-container input:focus,
+.sort-search-container select:focus {
+    outline: none;
+    border-color: #5A7C66;
+}
+
+.find {
+    margin-right: 500px;
 }

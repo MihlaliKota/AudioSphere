@@ -40,3 +40,7 @@
 .favorites-button:hover {
     background-color: #4C6E5A;
 }
+
+.Link {
+    text-decoration: none;
+}

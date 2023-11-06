@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Header() {
   return (
     <nav className="header">
-      <Link to="/">
+      <Link className="Link" to="/">
         <div className="logo-container">
           <svg
             className="logo"
