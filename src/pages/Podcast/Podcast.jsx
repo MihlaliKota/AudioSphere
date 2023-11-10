@@ -58,7 +58,7 @@ const Podcast = () => {
 
   return (
     <div className="podcast-container">
-      <p className="back-link" onClick={() => goBack("/")}>
+      <p className="back-link" onClick={() => goBack("/home")}>
         Back
       </p>
       <img

@@ -33,6 +33,9 @@ const Login = () => {
         },
       });
       alert("Check your email for verification link!");
+
+
+      
     } catch (error) {
       alert(error);
     }
