@@ -1,0 +1,16 @@
+.back-links {
+    background-color: #5A7C66;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    text-decoration: none;
+    width: 45px;
+    margin-left: 20px;
+}
+
+.back-links:hover {
+    background-color: #4C6E5A;
+}
