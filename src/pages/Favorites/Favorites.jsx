@@ -6,7 +6,7 @@ const Favorites = () => {
 
   return (
     <div>
-      <p className="back-links" onClick={() => goBack("/home")}>
+      <p className="back-links" onClick={() => goBack("/")}>
         Back
       </p>
       <h1>Favorite</h1>
