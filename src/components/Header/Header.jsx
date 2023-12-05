@@ -18,11 +18,11 @@ export default function Header() {
           <h3 className="title">audiosphere</h3>
         </div>
       </Link>
-      <button className="favorites-button">
+      {/* <button className="favorites-button">
         <Link className="Link" to="/favorites">
           Favorites
         </Link>
-      </button>
+      </button> */}
     </nav>
   );
 }
