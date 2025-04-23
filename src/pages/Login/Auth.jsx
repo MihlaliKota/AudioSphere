@@ -2,7 +2,8 @@ import { createClient } from "@supabase/supabase-js";
 import { Auth } from "@supabase/auth-ui-react";
 import { ThemeSupa } from "@supabase/auth-ui-shared";
 import "./Auth.css";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 
 const supabase = createClient(
   "https://xrcocrcbjzdubctpstzq.supabase.co",
@@ -11,6 +12,18 @@ const supabase = createClient(
 
 const Login = () => {
   const goHome = useNavigate();
+  const location = useLocation();
+
+  useEffect(() => {
+    if (location.hash && location.hash.includes('access_token')) {
+      supabase.auth.getSession().then(({ data: { session } }) => {
+        if (session) {
+          goHome("/home");
+        }
+      });
+    }
+  }, [location, goHome]);
+
   supabase.auth.onAuthStateChange((event) => {
     if (event === "SIGNED_IN") goHome("/home");
   });
@@ -21,6 +34,7 @@ const Login = () => {
         supabaseClient={supabase}
         appearance={{ theme: ThemeSupa }}
         providers={["github"]}
+        redirectTo={window.location.origin}
       />
     </div>
   );
